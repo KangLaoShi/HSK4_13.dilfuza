@@ -1,0 +1,554 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.3">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="uz"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;HSK 3 - Lesson 18&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Tailwind CSS --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- React &amp; ReactDOM --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Babel for JSX --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/@babel/standalone/babel.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.perspective-1000 { perspective: 1000px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.transform-style-3d { transform-style: preserve-3d; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.backface-hidden { backface-visibility: hidden; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.rotate-y-180 { transform: rotateY(180deg); }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="bg-slate-50 text-slate-800 font-sans min-h-screen"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="root"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script type="text/babel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const { useState, useEffect } = React;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- ICONS (Replaced lucide-react with inline SVGs for standalone HTML) ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const Volume2 = ({ size = 24, className = "" }) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}&gt;&lt;polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"&gt;&lt;/polygon&gt;&lt;path d="M15.54 8.46a5 5 0 0 1 0 7.07"&gt;&lt;/path&gt;&lt;path d="M19.07 4.93a10 10 0 0 1 0 14.14"&gt;&lt;/path&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const CheckCircle2 = ({ size = 24, className = "" }) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}&gt;&lt;path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"&gt;&lt;/path&gt;&lt;polyline points="22 4 12 14.01 9 11.01"&gt;&lt;/polyline&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const XCircle = ({ size = 24, className = "" }) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}&gt;&lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;&lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const RotateCcw = ({ size = 24, className = "" }) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}&gt;&lt;polyline points="1 4 1 10 7 10"&gt;&lt;/polyline&gt;&lt;path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"&gt;&lt;/path&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ChevronRight = ({ size = 24, className = "" }) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}&gt;&lt;polyline points="9 18 15 12 9 6"&gt;&lt;/polyline&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const ChevronLeft = ({ size = 24, className = "" }) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}&gt;&lt;polyline points="15 18 9 12 15 6"&gt;&lt;/polyline&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const Play = ({ size = 24, className = "" }) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}&gt;&lt;polygon points="5 3 19 12 5 21 5 3"&gt;&lt;/polygon&gt;&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- DATA ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const vocabList = [</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "动物", pinyin: "dòngwù", uz: "hayvon, jonzot", ru: "животное", en: "animal" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "相信", pinyin: "xiāngxìn", uz: "ishonmoq", ru: "верить", en: "to believe" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "国家", pinyin: "guójiā", uz: "davlat", ru: "страна", en: "country" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "奇怪", pinyin: "qíguài", uz: "g'alati, ajabtovur", ru: "странный", en: "strange" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "同意", pinyin: "tóngyì", uz: "rozi bo'lmoq", ru: "соглашаться", en: "to agree" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "万", pinyin: "wàn", uz: "o'n ming", ru: "десять тысяч", en: "ten thousand" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "向", pinyin: "xiàng", uz: "-ga (jo'nalish)", ru: "к, по направлению к", en: "towards" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "嘴", pinyin: "zuǐ", uz: "og'iz", ru: "рот", en: "mouth" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "段", pinyin: "duàn", uz: "muddat, qism", ru: "отрезок, абзац", en: "section, period" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "不但...而且...", pinyin: "búdàn... ěrqiě...", uz: "nafaqat..., balki...", ru: "не только..., но и...", en: "not only... but also..." },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "有名", pinyin: "yǒumíng", uz: "mashhur", ru: "известный", en: "famous" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "关于", pinyin: "guānyú", uz: "haqida", ru: "о, насчет", en: "about, regarding" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "机会", pinyin: "jīhuì", uz: "imkoniyat", ru: "возможность", en: "opportunity" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "种", pinyin: "zhǒng", uz: "tur, nav", ru: "вид, сорт", en: "kind, type" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "特点", pinyin: "tèdiǎn", uz: "o'ziga xos jihati", ru: "особенность", en: "feature, characteristic" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "地", pinyin: "de", uz: "ravishdosh qo'shimchasi", ru: "частица (образует наречие)", en: "adverbial particle" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "打算", pinyin: "dǎsuàn", uz: "rejalashtirmoq", ru: "планировать", en: "to plan" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "方便", pinyin: "fāngbiàn", uz: "qulay", ru: "удобный", en: "convenient" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "照顾", pinyin: "zhàogù", uz: "g'amxo'rlik qilmoq", ru: "заботиться", en: "to take care of" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ chars: "习惯", pinyin: "xíguàn", uz: "odatlanmoq", ru: "привыкать, привычка", en: "habit, to get used to" }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const vocabTestQuestions = [</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "动物", options: ["hayvon, jonzot", "davlat", "og'iz", "imkoniyat"], answer: "hayvon, jonzot" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "相信", options: ["rejalashtirmoq", "ishonmoq", "rozi bo'lmoq", "odatlanmoq"], answer: "ishonmoq" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "国家", options: ["imkoniyat", "tur, nav", "davlat", "qulay"], answer: "davlat" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "奇怪", options: ["mashhur", "g'alati, ajabtovur", "qulay", "haqida"], answer: "g'alati, ajabtovur" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "同意", options: ["odatlanmoq", "rejalashtirmoq", "rozi bo'lmoq", "ishonmoq"], answer: "rozi bo'lmoq" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "机会", options: ["o'n ming", "imkoniyat", "muddat, qism", "tur, nav"], answer: "imkoniyat" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "照顾", options: ["g'amxo'rlik qilmoq", "odatlanmoq", "ishonmoq", "rozi bo'lmoq"], answer: "g'amxo'rlik qilmoq" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "习惯", options: ["odatlanmoq", "mashhur", "qulay", "g'alati, ajabtovur"], answer: "odatlanmoq" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "万", options: ["yuz", "ming", "o'n ming", "million"], answer: "o'n ming" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "向", options: ["haqida", "-ga (jo'nalish)", "uchun", "bilan"], answer: "-ga (jo'nalish)" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "嘴", options: ["ko'z", "quloq", "og'iz", "burun"], answer: "og'iz" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "有名", options: ["qulay", "mashhur", "g'alati, ajabtovur", "o'ziga xos jihati"], answer: "mashhur" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "关于", options: ["haqida", "-ga (jo'nalish)", "uchun", "lekin"], answer: "haqida" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "特点", options: ["tur, nav", "o'n ming", "imkoniyat", "o'ziga xos jihati"], answer: "o'ziga xos jihati" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "段", options: ["muddat, qism", "davlat", "og'iz", "tur, nav"], answer: "muddat, qism" }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const dialogues = [</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>title: "1. 在打电话 (Telefonda)",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lines: [</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "朋友", zh: "老周，我打算买房子了，想向你借点儿钱。", pinyin: "Lǎo Zhōu, wǒ dǎsuàn mǎi fángzi le, xiǎng xiàng nǐ jiè diǎnr qián.", uz: "Lao Chjou, men uy sotib olmoqchiman, sendan bir oz pul qarz olmoqchi edim.", ru: "Лао Чжоу, я планирую купить дом, хотел одолжить у тебя немного денег.", en: "Lao Zhou, I plan to buy a house and would like to borrow some money from you." },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "周明", zh: "没问题，只要我有，就一定会借给你的。还差多少？", pinyin: "Méi wèntí, zhǐyào wǒ yǒu, jiù yídìng huì jiè gěi nǐ de. Hái chà duōshǎo?", uz: "Muammo yo'q, menda bor ekan, albatta senga qarz beraman. Yana qancha yetishmayapti?", ru: "Без проблем, если у меня есть, я обязательно тебе одолжу. Сколько еще не хватает?", en: "No problem, as long as I have it, I will definitely lend it to you. How much are you short of?" },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "朋友", zh: "还差5万块钱。", pinyin: "Hái chà 5 wàn kuài qián.", uz: "Yana 50 ming yuan yetishmayapti.", ru: "Не хватает еще 50 тысяч юаней.", en: "I'm still short 50,000 yuan." },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "周明", zh: "好，钱下午打给你。你打算在哪儿买房？", pinyin: "Hǎo, qián xiàwǔ dǎ gěi nǐ. Nǐ dǎsuàn zài nǎr mǎi fáng?", uz: "Yaxshi, pulni tushdan keyin o'tkazib beraman. Uyni qayerdan sotib olmoqchisan?", ru: "Хорошо, деньги переведу тебе днем. Где ты планируешь купить дом?", en: "Okay, I'll transfer the money to you in the afternoon. Where do you plan to buy the house?" },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "朋友", zh: "就在我们医院前面。", pinyin: "Jiù zài wǒmen yīyuàn qiánmiàn.", uz: "Xuddi bizning shifoxonamiz oldida.", ru: "Прямо перед нашей больницей.", en: "Right in front of our hospital." },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "周明", zh: "那你以后去医院就方便了。", pinyin: "Nà nǐ yǐhòu qù yīyuàn jiù fāngbiàn le.", uz: "Unda keyinchalik shifoxonaga borishing qulay bo'lar ekan.", ru: "Тогда тебе потом будет удобно ходить в больницу.", en: "Then it will be convenient for you to go to the hospital in the future." }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>]</p>
+<p class="p1"><span class="Apple-converted-space">          </span>},</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>title: "2. 在商店 (Do'konda)",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lines: [</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "小明", zh: "妈妈，你看那只狗多可爱，眼睛大大的，嘴小小的，我们买回去吧。", pinyin: "Māma, nǐ kàn nà zhī gǒu duō kě'ài, yǎnjing dàdà de, zuǐ xiǎoxiǎo de, wǒmen mǎi huíqù ba.", uz: "Oyi, qarang u kuchukcha qanchalar yoqimtoy, ko'zlari kattagina, og'zi kichkina, uni sotib olib ketaylik.", ru: "Мама, посмотри, какая милая та собачка, глазки большие, ротик маленький, давай купим ее.", en: "Mom, look how cute that dog is, big eyes, small mouth, let's buy it and take it home." },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "妈妈", zh: "动物和小孩儿一样，都需要人照顾。买回家去，谁照顾它啊？", pinyin: "Dòngwù hé xiǎoháir yíyàng, dōu xūyào rén zhàogù. Mǎi huí jiā qù, shéi zhàogù tā a?", uz: "Hayvonlar ham yosh bolalarga o'xshaydi, odam g'amxo'rligiga muhtoj bo'ladi. Uyga sotib olib ketsak, unga kim g'amxo'rlik qiladi?", ru: "Животные, как и дети, нуждаются в заботе. Если купим домой, кто будет о ней заботиться?", en: "Animals are like children, they all need people to take care of them. If we buy it home, who will take care of it?" },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "小明", zh: "我照顾啊。", pinyin: "Wǒ zhàogù a.", uz: "Men g'amxo'rlik qilaman.", ru: "Я буду заботиться.", en: "I'll take care of it." },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "妈妈", zh: "这段时间你自己的衣服都没洗，你能照顾好它吗？", pinyin: "Zhè duàn shíjiān nǐ zìjǐ de yīfu dōu méi xǐ, nǐ néng zhàogù hǎo tā ma?", uz: "Shu kunlarda o'zingning kiyimlaringni ham yuvmayapsan, unga yaxshi g'amxo'rlik qila olarmikinsan?", ru: "В последнее время ты даже свои вещи не стираешь, сможешь ли ты о ней хорошо позаботиться?", en: "You haven't even washed your own clothes lately, can you take good care of it?" },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "小明", zh: "只要你给我买，我就能照顾好它。", pinyin: "Zhǐyào nǐ gěi wǒ mǎi, wǒ jiù néng zhàogù hǎo tā.", uz: "Modomiki olib berar ekansiz, men unga yaxshi g'amxo'rlik qila olaman.", ru: "Если ты мне ее купишь, я смогу о ней хорошо позаботиться.", en: "As long as you buy it for me, I can take good care of it." }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>]</p>
+<p class="p1"><span class="Apple-converted-space">          </span>},</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>title: "3. 在公司 (Kompaniyada)",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lines: [</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "经理", zh: "说说你为什么选择来我们公司工作。", pinyin: "Shuōshuo nǐ wèishénme xuǎnzé lái wǒmen gōngsī gōngzuò.", uz: "Nima uchun bizning kompaniyaga ishlashga kelishni tanlaganingiz haqida gapirib bering.", ru: "Расскажите, почему вы решили прийти работать в нашу компанию.", en: "Tell me why you chose to come work at our company." },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "学生", zh: "贵公司不但很有名，而且工作环境好。", pinyin: "Guì gōngsī búdàn hěn yǒumíng, ěrqiě gōngzuò huánjìng hǎo.", uz: "Sizning kompaniyangiz nafaqat juda mashhur, balki ish muhiti ham yaxshi.", ru: "Ваша компания не только очень известная, но и рабочая атмосфера здесь хорошая.", en: "Your company is not only very famous, but the working environment is also good." },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "经理", zh: "做这个工作有点儿累，需要经常去外地。你家人同意吗？", pinyin: "Zuò zhège gōngzuò yǒudiǎnr lèi, xūyào jīngcháng qù wàidì. Nǐ jiārén tóngyì ma?", uz: "Bu ishni qilish biroz charchatadi, tez-tez boshqa shaharlarga borishga to'g'ri keladi. Oila a'zolaringiz rozi bo'ladimi?", ru: "Эта работа немного утомительная, нужно часто ездить в командировки. Ваша семья согласна?", en: "Doing this job is a bit tiring, it requires frequent trips out of town. Does your family agree?" },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "学生", zh: "只要我愿意，我相信他们就会同意的。", pinyin: "Zhǐyào wǒ yuànyì, wǒ xiāngxìn tāmen jiù huì tóngyì de.", uz: "Modomiki men xohlar ekanman, ishonamanki ular albatta rozi bo'lishadi.", ru: "Если я хочу, я верю, что они согласятся.", en: "As long as I am willing, I believe they will agree." },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "经理", zh: "好，那你明天来上班吧。关于这个工作，还有什么问题吗？", pinyin: "Hǎo, nà nǐ míngtiān lái shàngbān ba. Guānyú zhège gōngzuò, hái yǒu shénme wèntí ma?", uz: "Yaxshi, unda siz ertaga ishga keling. Bu ish haqida yana qanday savollaringiz bor?", ru: "Хорошо, тогда приходите завтра на работу. Есть ли у вас еще вопросы по поводу этой работы?", en: "Okay, then come to work tomorrow. Do you have any other questions about this job?" },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "学生", zh: "没有了，谢谢您给我这个机会，我会努力的。", pinyin: "Méiyǒu le, xièxiè nín gěi wǒ zhège jīhuì, wǒ huì nǔlì de.", uz: "Yo'q, menga bu imkoniyatni berganingiz uchun rahmat, men harakat qilaman.", ru: "Больше нет, спасибо, что дали мне этот шанс, я буду стараться.", en: "No, thank you for giving me this opportunity, I will work hard." }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>]</p>
+<p class="p1"><span class="Apple-converted-space">          </span>},</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>title: "4. 短文 (Qisqa matn)",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lines: [</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "Narrator", zh: "不同的国家有不同的文化，每种文化都有自己的特点。", pinyin: "Bùtóng de guójiā yǒu bùtóng de wénhuà, měi zhǒng wénhuà dōu yǒu zìjǐ de tèdiǎn.", uz: "Har xil davlatlarning turli madaniyatlari bor, har bir madaniyatning o'ziga xos jihatlari bo'ladi.", ru: "В разных странах разная культура, у каждого вида культуры есть свои особенности.", en: "Different countries have different cultures, and each culture has its own characteristics." },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "Narrator", zh: "到了一个新环境，你会觉得什么都很新鲜，而且还会觉得有点儿奇怪：", pinyin: "Dàole yí ge xīn huánjìng, nǐ huì juéde shénme dōu hěn xīnxiān, ěrqiě hái huì juéde yǒudiǎnr qíguài:", uz: "Yangi muhitga borganda, sizga hamma narsa juda yangidek, shu bilan birga biroz g'alatidek tuyuladi:", ru: "Оказавшись в новой обстановке, вам будет казаться всё свежим (новым), а также немного странным:", en: "When you arrive in a new environment, you will feel everything is fresh, and you will also feel it is a bit strange:" },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "Narrator", zh: "有些国家的人名写在姓前面，有些国家的人名写在姓后面，", pinyin: "yǒuxiē guójiā de rénmíng xiě zài xìng qiánmiàn, yǒuxiē guójiā de rénmíng xiě zài xìng hòumiàn,", uz: "Ba'zi davlatlarda ismlar familiyadan oldin yoziladi, ba'zi davlatlarda ismlar familiyadan keyin yoziladi,", ru: "в некоторых странах имена пишутся перед фамилией, в некоторых странах имена пишутся после фамилии,", en: "In some countries people's names are written before the surname, in some countries people's names are written after the surname," },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ speaker: "Narrator", zh: "但是只要经过一段时间，就会慢慢地习惯。", pinyin: "dànshì zhǐyào jīngguò yí duàn shíjiān, jiù huì mànmàn de xíguàn.", uz: "lekin ma'lum muddat o'tishi bilan, sekin-asta odatlanasiz.", ru: "но как только пройдет какое-то время, вы постепенно привыкнете.", en: "but as long as some time passes, you will slowly get used to it." }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>]</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const grammarRules = [</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>title: "1. 只要... 就... (Shart bog'lovchisi)",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>uz: `"只要...就..." tuzilmasi shartli qo'shma gaplarni bog'laydi. "只要" so'zidan keyin albatta shart qo'yiladi, "就" so'zidan keyin natija keladi.`,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ru: `Конструкция "只要...就..." соединяет условные придаточные предложения. После "只要" ставится необходимое условие, а после "就" - результат.`,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>en: `The "只要...就..." structure connects conditional clauses. "只要" introduces the necessary condition, and "就" introduces the result.`,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>examples: [</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ zh: "只要我有时间，就一定跟你去旅游。", pinyin: "Zhǐyào wǒ yǒu shíjiān, jiù yídìng gēn nǐ qù lǚyóu." },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ zh: "只要你给我买，我就能照顾好它。", pinyin: "Zhǐyào nǐ gěi wǒ mǎi, wǒ jiù néng zhàogù hǎo tā." }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>]</p>
+<p class="p1"><span class="Apple-converted-space">          </span>},</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{</p>
+<p class="p1"><span class="Apple-converted-space">            </span>title: "2. 关于 (Old ko'makchisi)",</p>
+<p class="p1"><span class="Apple-converted-space">            </span>uz: `"关于" (haqida) old ko'makchisi ot oldidan keladi, ya'ni suhbat olib borilayotgan obyekt oldida turadi.`,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>ru: `Предлог "关于" (о, насчет) ставится перед существительным, указывая на объект, о котором идет речь.`,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>en: `The preposition "关于" (about/regarding) is used before a noun to introduce the topic or object being discussed.`,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>examples: [</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ zh: "关于这件事，我们还没有决定呢。", pinyin: "Guānyú zhè jiàn shì, wǒmen hái méiyǒu juédìng ne." },</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{ zh: "关于这个工作，还有什么问题吗？", pinyin: "Guānyú zhège gōngzuò, hái yǒu shénme wèntí ma?" }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>]</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const grammarTestQuestions = [</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "_____你有时间，我们_____去爬山。", options: ["不但...而且...", "虽然...但是...", "只要...就...", "因为...所以..."], answer: "只要...就..." },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "_____中国历史，我了解得不多。", options: ["关于", "向", "为", "对"], answer: "关于" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "他_____前走。", options: ["在", "从", "向", "离"], answer: "向" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "老师高兴_____说。", options: ["的", "得", "地", "呢"], answer: "地" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "这家饭馆_____菜很好吃，_____环境很好。", options: ["只要...就...", "不但...而且...", "如果...就...", "因为...所以..."], answer: "不但...而且..." },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "_____大家想吃，我_____去做。", options: ["不但...而且...", "只要...就...", "关于...的...", "除了...都..."], answer: "只要...就..." },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "我最近看了一些_____中国文化的电影。", options: ["关于", "向", "从", "给"], answer: "关于" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "只要你努力学习，_____一定能考好。", options: ["就", "才", "还", "也"], answer: "就" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "小孩子喜欢快乐_____学习。", options: ["地", "的", "得", "了"], answer: "地" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "请你_____他借点儿钱。", options: ["对", "给", "向", "为"], answer: "向" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "_____这个问题，我不担心。", options: ["向", "关于", "从", "用"], answer: "关于" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "我们_____喜欢喝茶，_____喜欢喝咖啡。", options: ["不但...而且...", "只要...就...", "因为...所以...", "虽然...但是..."], answer: "不但...而且..." },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "只要明天下雨，我们_____不去公园了。", options: ["就", "还", "又", "才"], answer: "就" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "请_____右边看。", options: ["关于", "离", "从", "向"], answer: "向" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ q: "只要你早点儿睡觉，明天_____不会迟到。", options: ["也", "还", "就", "才"], answer: "就" }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const exerciseWords1 = ["国家", "向", "动物", "而且", "地"];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const exerciseSentences1 = [</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ text: ["你是从哪个", "来的？"], answer: "国家" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ text: ["坐火车的时候，我喜欢", "外看。"], answer: "向" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ text: ["你最喜欢什么", "？"], answer: "动物" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ text: ["这家饭馆不但菜很好吃，", "环境很好。"], answer: "而且" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ text: ["小孩子喜欢快乐", "学习。"], answer: "地" }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const exerciseWords2 = ["段", "机会", "奇怪", "关于", "同意"];</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const exerciseSentences2 = [</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ text: ["过一", "时间以后再说吧。"], answer: "段" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ text: ["那儿的工作", "比较多。"], answer: "机会" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ text: ["真", "，桌子上的词典怎么不见了？"], answer: "奇怪" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ text: ["我家有很多", "中国文化的电影光盘。"], answer: "关于" },</p>
+<p class="p1"><span class="Apple-converted-space">          </span>{ text: ["我不", "，虽然很便宜，但是离公司太远了。"], answer: "同意" }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- UTILS ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const speak = (text) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if ('speechSynthesis' in window) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>window.speechSynthesis.cancel();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const utterance = new SpeechSynthesisUtterance(text);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>utterance.lang = 'zh-CN';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>window.speechSynthesis.speak(utterance);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>alert("Kechirasiz, sizning brauzeringiz ovozli o'qishni qo'llab-quvvatlamaydi.");</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- COMPONENTS ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function Flashcards() {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [index, setIndex] = useState(0);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [isFlipped, setIsFlipped] = useState(false);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const word = vocabList[index];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const handleNext = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setIsFlipped(false);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setTimeout(() =&gt; setIndex((prev) =&gt; (prev + 1) % vocabList.length), 150);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const handlePrev = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setIsFlipped(false);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setTimeout(() =&gt; setIndex((prev) =&gt; (prev - 1 + vocabList.length) % vocabList.length), 150);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="flex flex-col items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="text-slate-500 mb-4"&gt;{index + 1} / {vocabList.length}&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">              </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="relative w-full max-w-md h-80 perspective-1000 mb-8 cursor-pointer" onClick={() =&gt; setIsFlipped(!isFlipped)}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className={`w-full h-full transition-transform duration-500 transform-style-3d ${isFlipped ? 'rotate-y-180' : ''}`}&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{/* Front */}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="absolute w-full h-full backface-hidden bg-white rounded-2xl shadow-xl flex flex-col items-center justify-center p-8 border-2 border-teal-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onClick={(e) =&gt; { e.stopPropagation(); speak(word.chars); }}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>className="absolute top-4 right-4 p-2 text-teal-600 hover:bg-teal-50 rounded-full"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;Volume2 size={28} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 className="text-7xl font-bold text-slate-800 mb-4"&gt;{word.chars}&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-2xl text-teal-600"&gt;{word.pinyin}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{/* Back */}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="absolute w-full h-full backface-hidden bg-teal-600 text-white rounded-2xl shadow-xl flex flex-col items-center justify-center p-8 rotate-y-180 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 className="text-3xl font-bold mb-4"&gt;{word.uz}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="w-16 h-1 bg-teal-400 mb-4 rounded"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-xl mb-2 text-teal-50 italic"&gt;{word.ru}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-xl text-teal-100"&gt;{word.en}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="flex gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button onClick={handlePrev} className="p-4 bg-white shadow rounded-full text-teal-600 hover:bg-teal-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;ChevronLeft size={24} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button onClick={handleNext} className="p-4 bg-white shadow rounded-full text-teal-600 hover:bg-teal-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;ChevronRight size={24} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function Quiz({ data, title }) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [currentQ, setCurrentQ] = useState(0);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [score, setScore] = useState(0);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [showResult, setShowResult] = useState(false);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [selected, setSelected] = useState(null);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const handleAnswer = (option) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setSelected(option);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (option === data[currentQ].answer) setScore(score + 1);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>setTimeout(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>setSelected(null);</p>
+<p class="p1"><span class="Apple-converted-space">              </span>if (currentQ &lt; data.length - 1) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setCurrentQ(currentQ + 1);</p>
+<p class="p1"><span class="Apple-converted-space">              </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setShowResult(true);</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, 1000);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const restart = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setCurrentQ(0);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setScore(0);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setShowResult(false);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setSelected(null);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (showResult) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-white p-8 rounded-2xl shadow-lg text-center max-w-lg mx-auto border-t-4 border-teal-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 className="text-3xl font-bold mb-4"&gt;Natija&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p className="text-xl mb-6 text-slate-600"&gt;Siz {data.length} ta savoldan {score} tasiga to'g'ri javob berdingiz!&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="text-6xl mb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{score === data.length ? '🏆' : score &gt; data.length / 2 ? '👍' : '📚'}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button onClick={restart} className="bg-teal-600 text-white px-8 py-3 rounded-full font-bold flex items-center justify-center gap-2 mx-auto hover:bg-teal-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;RotateCcw size={20} /&gt; Qayta urinish</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const q = data[currentQ];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="max-w-2xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="flex justify-between items-center mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 className="text-xl font-bold text-teal-700"&gt;{title}&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span className="text-sm font-bold bg-teal-100 text-teal-800 px-3 py-1 rounded-full"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{currentQ + 1} / {data.length}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-white p-8 rounded-2xl shadow-md mb-6 border border-slate-100 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 className="text-5xl font-bold text-slate-800 py-8"&gt;{q.q}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="grid grid-cols-1 sm:grid-cols-2 gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{q.options.map((opt, idx) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>let btnClass = "bg-white border-2 border-slate-200 text-slate-700 hover:border-teal-500 hover:bg-teal-50";</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>if (selected) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (opt === q.answer) btnClass = "bg-green-100 border-green-500 text-green-800";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>else if (opt === selected) btnClass = "bg-red-100 border-red-500 text-red-800";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>else btnClass = "bg-white border-slate-200 text-slate-400 opacity-50";</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>key={idx}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>disabled={selected !== null}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onClick={() =&gt; handleAnswer(opt)}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>className={`p-4 rounded-xl font-medium text-lg transition-all flex items-center justify-between ${btnClass}`}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;span&gt;{opt}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>{selected &amp;&amp; opt === q.answer &amp;&amp; &lt;CheckCircle2 className="text-green-600" size={20}/&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>{selected === opt &amp;&amp; opt !== q.answer &amp;&amp; &lt;XCircle className="text-red-600" size={20}/&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>})}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function Dialogues() {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="max-w-3xl mx-auto space-y-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{dialogues.map((dialogue, dIdx) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div key={dIdx} className="bg-white rounded-2xl shadow-md overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="bg-teal-600 text-white p-4 font-bold text-lg flex justify-between items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{dialogue.title}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="p-6 space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{dialogue.lines.map((line, lIdx) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div key={lIdx} className="flex gap-4 border-b border-slate-100 pb-6 last:border-0 last:pb-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                          </span>onClick={() =&gt; speak(line.zh)}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>className="mt-1 shrink-0 bg-teal-100 text-teal-600 p-2 rounded-full h-10 w-10 flex items-center justify-center hover:bg-teal-200 transition-colors"</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;Play size={18} className="ml-1" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span className="font-bold text-slate-500 mr-2"&gt;{line.speaker}:&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span className="text-xl font-bold text-slate-800"&gt;{line.zh}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;p className="text-teal-600 mb-2"&gt;{line.pinyin}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-sm space-y-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p className="text-slate-700"&gt;&lt;span className="font-semibold text-slate-400 text-xs"&gt;UZ:&lt;/span&gt; {line.uz}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p className="text-slate-600"&gt;&lt;span className="font-semibold text-slate-400 text-xs"&gt;RU:&lt;/span&gt; {line.ru}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p className="text-slate-500"&gt;&lt;span className="font-semibold text-slate-400 text-xs"&gt;EN:&lt;/span&gt; {line.en}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function Grammar() {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="max-w-3xl mx-auto space-y-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{grammarRules.map((rule, idx) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div key={idx} className="bg-white rounded-2xl shadow-md p-6 border-l-4 border-teal-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;h3 className="text-2xl font-bold text-slate-800 mb-4"&gt;{rule.title}&lt;/h3&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="space-y-3 mb-6 bg-slate-50 p-4 rounded-xl border border-slate-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-slate-800 font-medium"&gt;&lt;span className="text-xs font-bold text-teal-600 uppercase mr-2"&gt;UZ&lt;/span&gt;{rule.uz}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-slate-700"&gt;&lt;span className="text-xs font-bold text-blue-500 uppercase mr-2"&gt;RU&lt;/span&gt;{rule.ru}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-slate-600"&gt;&lt;span className="text-xs font-bold text-red-400 uppercase mr-2"&gt;EN&lt;/span&gt;{rule.en}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 className="font-bold text-slate-500 mb-3 text-sm uppercase tracking-wider"&gt;Misollar / Примеры / Examples&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="space-y-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>{rule.examples.map((ex, eIdx) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div key={eIdx} className="flex gap-3 bg-white p-3 border border-slate-200 rounded-lg hover:border-teal-300 transition-colors"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;button onClick={() =&gt; speak(ex.zh)} className="text-teal-500 hover:text-teal-700 mt-1 shrink-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;Volume2 size={20} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p className="text-lg font-bold"&gt;{ex.zh}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p className="text-sm text-slate-500"&gt;{ex.pinyin}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function ExerciseSentence({ index, item, options }) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [val, setVal] = useState("");</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const isCorrect = val === item.answer;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="flex items-center flex-wrap gap-2 text-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;span className="text-slate-400 font-bold mr-2"&gt;{index + 1}.&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;span&gt;{item.text[0]}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;select<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>value={val}<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>onChange={(e) =&gt; setVal(e.target.value)}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>className={`border-b-2 outline-none font-bold text-center px-2 py-1 bg-transparent transition-colors cursor-pointer</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>${val === "" ? "border-slate-300 w-24" :<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>isCorrect ? "border-green-500 text-green-600" : "border-red-500 text-red-600"}`}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;option value="" disabled&gt;&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{options.map(opt =&gt; &lt;option key={opt} value={opt}&gt;{opt}&lt;/option&gt;)}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;span&gt;{item.text[1]}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{val !== "" &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                </span>isCorrect ? &lt;CheckCircle2 className="text-green-500 ml-2" size={20}/&gt; : &lt;XCircle className="text-red-500 ml-2" size={20}/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function Exercises() {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="max-w-3xl mx-auto space-y-8"&gt;</p>
+<p class="p2"><span class="Apple-converted-space">              </span></p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-white p-6 rounded-2xl shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="flex flex-wrap gap-3 mb-6 p-4 bg-teal-50 rounded-xl justify-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{exerciseWords1.map(w =&gt; &lt;span key={w} className="bg-white px-4 py-2 rounded-lg font-bold text-teal-700 shadow-sm border border-teal-100"&gt;{w}&lt;/span&gt;)}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{exerciseSentences1.map((item, idx) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;ExerciseSentence key={idx} index={idx} item={item} options={exerciseWords1} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-white p-6 rounded-2xl shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="flex flex-wrap gap-3 mb-6 p-4 bg-teal-50 rounded-xl justify-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{exerciseWords2.map(w =&gt; &lt;span key={w} className="bg-white px-4 py-2 rounded-lg font-bold text-teal-700 shadow-sm border border-teal-100"&gt;{w}&lt;/span&gt;)}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{exerciseSentences2.map((item, idx) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;ExerciseSentence key={idx} index={idx} item={item} options={exerciseWords2} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function HSKApp() {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [activeTab, setActiveTab] = useState('flashcards');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const tabs = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'flashcards', label: "So'zlar" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'vocabTest', label: "So'zlar testi" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'dialogues', label: "Matnlar" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'grammar', label: "Grammatika" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'grammarTest', label: "Grammatika testi" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ id: 'exercises', label: "Mashqlar" }</p>
+<p class="p1"><span class="Apple-converted-space">          </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="min-h-screen pb-20 flex flex-col"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Header */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;header className="bg-teal-600 text-white p-6 shadow-md text-center shrink-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h1 className="text-3xl font-bold mb-2"&gt;18 我相信他们会同意的&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 className="text-xl opacity-90"&gt;Dilfuza Kāng lǎo shī bilan xitoy tilini o'rganmiz&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Navigation */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;nav className="bg-white shadow flex flex-wrap justify-center overflow-x-auto p-2 shrink-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{tabs.map(tab =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>key={tab.id}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>onClick={() =&gt; setActiveTab(tab.id)}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>className={`px-4 py-2 m-1 rounded-full text-sm font-medium transition-colors ${</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>activeTab === tab.id ? 'bg-teal-600 text-white shadow-inner' : 'bg-slate-100 text-slate-600 hover:bg-teal-100'</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}`}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{tab.label}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/nav&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Main Content Area */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;main className="flex-grow p-4 md:p-8 max-w-4xl mx-auto w-full"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{activeTab === 'flashcards' &amp;&amp; &lt;Flashcards /&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{activeTab === 'vocabTest' &amp;&amp; &lt;Quiz data={vocabTestQuestions} title="So'zlar testi" /&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{activeTab === 'dialogues' &amp;&amp; &lt;Dialogues /&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{activeTab === 'grammar' &amp;&amp; &lt;Grammar /&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{activeTab === 'grammarTest' &amp;&amp; &lt;Quiz data={grammarTestQuestions} title="Grammatika testi" /&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{activeTab === 'exercises' &amp;&amp; &lt;Exercises /&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Footer */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;footer className="bg-slate-800 text-slate-300 p-4 text-center text-sm shrink-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>HSK 3 Standard Course - Lesson 18 &lt;br/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>© 2026 Dilfuza Kāng lǎo shī (telegram@diffila)</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/footer&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// --- RENDER ---</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const root = ReactDOM.createRoot(document.getElementById('root'));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>root.render(&lt;HSKApp /&gt;);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
